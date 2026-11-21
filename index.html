@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Music · Mahesh Venkitachalam</title>
+<meta name="description" content="Mahesh Venkitachalam's music projects: Raga Vox, a live Hindustani raga time wheel, and Mahesh's Music Archive, a catalog of classical recordings with streaming links.">
+<meta property="og:title" content="Music · Mahesh Venkitachalam">
+<meta property="og:description" content="Raga Vox, a live raga time wheel, and a catalog of Hindustani classical recordings with streaming links.">
+<link rel="icon" href="archive.svg" type="image/svg+xml">
+<style>
+:root {
+  --bg: #faf7f2; --surface: #ffffff; --ink: #2a2420; --muted: #6f655c; --line: #e7dfd4;
+  --accent: #9a3b1c; --accent-soft: #f5e6da; --vox: #3b2f6e; --vox-soft: #ece8f7;
+  --shadow: 0 1px 2px rgb(60 40 20 / .06), 0 10px 30px rgb(60 40 20 / .08);
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161311; --surface: #201c19; --ink: #efe8df; --muted: #a89d91; --line: #3a332d;
+    --accent: #e3956a; --accent-soft: #3b2a20; --vox: #b8a6f5; --vox-soft: #262140;
+    --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 10px 30px rgb(0 0 0 / .3); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161311; --surface: #201c19; --ink: #efe8df; --muted: #a89d91; --line: #3a332d;
+  --accent: #e3956a; --accent-soft: #3b2a20; --vox: #b8a6f5; --vox-soft: #262140;
+  --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 10px 30px rgb(0 0 0 / .3); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 var(--sans); min-height: 100vh; display: flex; flex-direction: column; }
+a { color: inherit; }
+.wrap { width: 100%; max-width: 980px; margin: 0 auto; padding: 0 16px; }
+
+header.wrap { padding-top: 72px; padding-bottom: 36px; }
+.kicker { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+h1 { font: 600 clamp(34px, 6vw, 52px)/1.05 var(--serif); margin: 10px 0 14px; letter-spacing: -.015em; }
+.lede { color: var(--muted); font-size: 18px; max-width: 58ch; margin: 0; }
+
+main { flex: 1; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; padding-bottom: 56px; }
+.card { position: relative; display: flex; flex-direction: column; gap: 14px; background: var(--surface); border: 1px solid var(--line);
+  border-radius: 18px; padding: 28px; box-shadow: var(--shadow); text-decoration: none; transition: transform .15s ease, border-color .15s ease; }
+.card:hover { transform: translateY(-3px); }
+.card.vox:hover { border-color: var(--vox); }
+.card.arch:hover { border-color: var(--accent); }
+.card:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.head { display: flex; align-items: center; gap: 16px; }
+.icon { width: 64px; height: 64px; flex: none; border-radius: 16px; display: grid; place-items: center; }
+.vox .icon { background: #100e24; }
+.arch .icon { background: var(--accent-soft); }
+.icon img, .icon svg { width: 52px; height: 52px; display: block; }
+.type { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.vox .type { color: var(--vox); }
+.arch .type { color: var(--accent); }
+h2 { font: 600 26px/1.15 var(--serif); margin: 2px 0 0; }
+.summary { margin: 0; }
+ul.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; color: var(--muted); font-size: 15px; }
+ul.points li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; }
+ul.points li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; margin-top: 9px; }
+.vox ul.points li::before { background: var(--vox); }
+.arch ul.points li::before { background: var(--accent); }
+.stats { display: flex; flex-wrap: wrap; gap: 6px; min-height: 26px; }
+.stat { font-size: 13px; padding: 2px 10px; border-radius: 999px; }
+.vox .stat { background: var(--vox-soft); }
+.arch .stat { background: var(--accent-soft); }
+.go { margin-top: auto; padding-top: 6px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-weight: 600; }
+.go .url { color: var(--muted); font-weight: 400; font-size: 14px; }
+.vox .go .cta { color: var(--vox); }
+.arch .go .cta { color: var(--accent); }
+.sub { display: flex; flex-wrap: wrap; gap: 14px; font-size: 14px; position: relative; z-index: 1; }
+.sub a { color: var(--accent); }
+/* whole card clickable, while the small sub-links stay clickable on top */
+.card .stretch::after { content: ""; position: absolute; inset: 0; border-radius: 18px; }
+
+footer { color: var(--muted); font-size: 13px; padding: 20px 0 32px; border-top: 1px solid var(--line); }
+footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
+.theme { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 4px 10px; cursor: pointer; font: inherit; }
+
+@media (max-width: 720px) {
+  header.wrap { padding-top: 44px; padding-bottom: 24px; }
+  .go .url { display: none; }
+  .cards { grid-template-columns: 1fr; gap: 16px; }
+  .card { padding: 22px; }
+  .lede { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="kicker">Music</div>
+  <h1>Ragas, recordings and listening</h1>
+  <p class="lede">Two things I've built around Hindustani classical music: an app that plays the right raga for the hour, and a catalog of the recordings I collect and stream.</p>
+</header>
+
+<main class="wrap">
+  <div class="cards">
+    <article class="card vox">
+      <div class="head">
+        <div class="icon"><img src="ragavox.svg" alt=""></div>
+        <div><div class="type">Web app</div><h2><a class="stretch" href="https://ragavox.com" style="text-decoration:none">Raga Vox</a></h2></div>
+      </div>
+      <p class="summary">A live <em>samay chakra</em>, the traditional raga time wheel. It shows which ragas belong to this hour and plays a recording of one.</p>
+      <ul class="points">
+        <li>25 ragas across the 8 prahars of the day, plus seasonal ragas like Basant and Megh in their months</li>
+        <li>Follows your local clock and says so when you're outside India, with a switch to India time</li>
+        <li>Plays Spotify recordings with no login; click any prahar to explore its ragas</li>
+      </ul>
+      <div class="go"><span class="cta">Open Raga Vox →</span><span class="url">ragavox.com</span></div>
+    </article>
+
+    <article class="card arch">
+      <div class="head">
+        <div class="icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="28" fill="#2a2420"/>
+            <circle cx="32" cy="32" r="23" fill="none" stroke="#4a403a" stroke-width="1"/>
+            <circle cx="32" cy="32" r="18.5" fill="none" stroke="#4a403a" stroke-width="1"/>
+            <circle cx="32" cy="32" r="14" fill="none" stroke="#4a403a" stroke-width="1"/>
+            <circle cx="32" cy="32" r="10" fill="#9a3b1c"/>
+            <circle cx="32" cy="32" r="10" fill="none" stroke="#e3956a" stroke-width="1.2"/>
+            <circle cx="32" cy="32" r="2.2" fill="#faf7f2"/>
+            <path d="M14 22 A22 22 0 0 1 24 12.5" stroke="#efe8df" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div><div class="type">Catalog</div><h2><a class="stretch" href="/music_catalog/" style="text-decoration:none">Mahesh's Music Archive</a></h2></div>
+      </div>
+      <p class="summary">My collection of Hindustani classical recordings, mostly classic HMV/Saregama albums kept as lossless FLAC, with the story behind each one.</p>
+      <ul class="points">
+        <li>Search and filter by raga, artist, gharana, instrument, form and time of day</li>
+        <li>Liner notes, track-by-track raga details and a Spotify link for every album and track</li>
+        <li>Also shows albums I don't have yet, and curated streaming lists like 50 raga-based film songs</li>
+      </ul>
+      <div class="stats" id="archStats" aria-live="polite"></div>
+      <div class="sub"><a href="/music_catalog/streaming.html">Streaming lists</a><a href="/music_catalog/#view=tracks">Browse all tracks</a></div>
+      <div class="go"><span class="cta">Open the archive →</span><span class="url">electronut.in/music_catalog</span></div>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Mahesh Venkitachalam · <a href="/">electronut.in</a></span>
+    <button class="theme" id="theme" aria-label="Toggle light or dark theme">◐ Theme</button>
+  </div>
+</footer>
+
+<script>
+// Live counts from the published catalog (same site). The page reads fine without them.
+(async () => {
+  try {
+    const html = await (await fetch("/music_catalog/index.html", { cache: "no-cache" })).text();
+    const i = html.indexOf('{"title"');
+    if (i < 0) return;
+    let depth = 0, j = i, inStr = false;
+    for (; j < html.length; j++) {
+      const c = html[j];
+      if (inStr) { if (c === "\\") j++; else if (c === '"') inStr = false; continue; }
+      if (c === '"') inStr = true; else if (c === "{") depth++; else if (c === "}" && --depth === 0) break;
+    }
+    const data = JSON.parse(html.slice(i, j + 1));
+    const own = data.albums.filter(a => a.owned !== false);
+    const tracks = own.reduce((n, a) => n + a.tracks.length, 0);
+    const ragas = new Set(own.flatMap(a => a.tracks.map(t => t.ragaBase)).filter(Boolean)).size;
+    const wish = data.albums.filter(a => a.owned === false && a.spotifyKind !== "playlist").length;
+    const lists = data.albums.filter(a => a.spotifyKind === "playlist").length;
+    const bits = [`${own.length} albums`, `${tracks} tracks`, `${ragas} ragas`, wish && `${wish} on the wishlist`, lists && `${lists} streaming list${lists > 1 ? "s" : ""}`];
+    document.getElementById("archStats").innerHTML = bits.filter(Boolean).map(b => `<span class="stat">${b}</span>`).join("");
+  } catch {}
+})();
+
+const root = document.documentElement;
+try { const th = localStorage.getItem("catalog-theme"); if (th) root.dataset.theme = th; } catch {}
+document.getElementById("theme").onclick = () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("catalog-theme", root.dataset.theme); } catch {}
+};
+</script>
+</body>
+</html>
