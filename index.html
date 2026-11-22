@@ -51,7 +51,7 @@ main { flex: 1; }
 .head { display: flex; align-items: center; gap: 16px; }
 .icon { width: 64px; height: 64px; flex: none; border-radius: 16px; display: grid; place-items: center; }
 .vox .icon { background: #100e24; }
-.arch .icon { background: var(--accent-soft); }
+.arch .icon { background: #100e24; }
 .icon img, .icon svg { width: 52px; height: 52px; display: block; }
 .type { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .vox .type { color: var(--vox); }
@@ -114,18 +114,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 
     <article class="card arch">
       <div class="head">
-        <div class="icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <circle cx="32" cy="32" r="28" fill="#2a2420"/>
-            <circle cx="32" cy="32" r="23" fill="none" stroke="#4a403a" stroke-width="1"/>
-            <circle cx="32" cy="32" r="18.5" fill="none" stroke="#4a403a" stroke-width="1"/>
-            <circle cx="32" cy="32" r="14" fill="none" stroke="#4a403a" stroke-width="1"/>
-            <circle cx="32" cy="32" r="10" fill="#9a3b1c"/>
-            <circle cx="32" cy="32" r="10" fill="none" stroke="#e3956a" stroke-width="1.2"/>
-            <circle cx="32" cy="32" r="2.2" fill="#faf7f2"/>
-            <path d="M14 22 A22 22 0 0 1 24 12.5" stroke="#efe8df" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
+        <div class="icon"><img src="archive.svg" alt=""></div>
         <div><div class="type">Catalog</div><h2><a class="stretch" href="https://ragavox.com/catalog/" style="text-decoration:none">Mahesh's Music Catalog</a></h2></div>
       </div>
       <p class="summary">Hindustani, Carnatic and Fusion recordings. Each one is either In Archive (kept as lossless FLAC, mostly classic HMV/Saregama albums) or streaming only.</p>

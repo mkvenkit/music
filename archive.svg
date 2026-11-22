@@ -1,10 +1,28 @@
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="32" cy="32" r="28" fill="#2a2420"/>
-            <circle cx="32" cy="32" r="23" fill="none" stroke="#4a403a" stroke-width="1"/>
-            <circle cx="32" cy="32" r="18.5" fill="none" stroke="#4a403a" stroke-width="1"/>
-            <circle cx="32" cy="32" r="14" fill="none" stroke="#4a403a" stroke-width="1"/>
-            <circle cx="32" cy="32" r="10" fill="#9a3b1c"/>
-            <circle cx="32" cy="32" r="10" fill="none" stroke="#e3956a" stroke-width="1.2"/>
-            <circle cx="32" cy="32" r="2.2" fill="#faf7f2"/>
-            <path d="M14 22 A22 22 0 0 1 24 12.5" stroke="#efe8df" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/>
-          </svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Mahesh's Music Catalog: a record in Raga Vox colours (indigo disc, time-wheel arcs, amber-pink label) -->
+  <defs>
+    <linearGradient id="lbl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2a541"/>
+      <stop offset="1" stop-color="#e58fc2"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="31" fill="#100e24"/>
+  <!-- grooves -->
+  <circle cx="32" cy="32" r="22.5" fill="none" stroke="#ffffff" stroke-opacity=".10" stroke-width="1"/>
+  <circle cx="32" cy="32" r="19" fill="none" stroke="#ffffff" stroke-opacity=".10" stroke-width="1"/>
+  <circle cx="32" cy="32" r="15.5" fill="none" stroke="#ffffff" stroke-opacity=".10" stroke-width="1"/>
+  <!-- time-wheel arcs around the rim -->
+  <g fill="none" stroke-width="4.2" stroke-linecap="round">
+    <path d="M32 5.5 A26.5 26.5 0 0 1 50.7 13.3" stroke="#f3d98c"/>
+    <path d="M55.4 22.4 A26.5 26.5 0 0 1 55.4 41.6" stroke="#e8b25e"/>
+    <path d="M50.7 50.7 A26.5 26.5 0 0 1 32 58.5" stroke="#d0674f"/>
+    <path d="M22.4 55.4 A26.5 26.5 0 0 1 8.6 45.2" stroke="#a98ff0"/>
+    <path d="M5.5 32 A26.5 26.5 0 0 1 13.3 13.3" stroke="#4fc4b0"/>
+  </g>
+  <!-- sheen -->
+  <path d="M17 24 A16.5 16.5 0 0 1 25 16" stroke="#efe7d8" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- label + spindle -->
+  <circle cx="32" cy="32" r="10" fill="url(#lbl)"/>
+  <circle cx="32" cy="32" r="10" fill="none" stroke="#100e24" stroke-opacity=".35" stroke-width="1"/>
+  <circle cx="32" cy="32" r="2.4" fill="#100e24"/>
+</svg>
