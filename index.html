@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Music · Mahesh Venkitachalam</title>
-<meta name="description" content="Mahesh Venkitachalam's music projects: Raga Vox, a live Hindustani raga time wheel, and Mahesh's Music Archive, a catalog of classical recordings with streaming links.">
+<meta name="description" content="Mahesh Venkitachalam's music projects: Raga Vox, a live Hindustani raga time wheel, and Mahesh's Music Catalog, classical recordings with streaming links and raga notes.">
 <meta property="og:title" content="Music · Mahesh Venkitachalam">
 <meta property="og:description" content="Raga Vox, a live raga time wheel, and a catalog of Hindustani classical recordings with streaming links.">
 <link rel="icon" href="archive.svg" type="image/svg+xml">
@@ -126,16 +126,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
             <path d="M14 22 A22 22 0 0 1 24 12.5" stroke="#efe8df" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/>
           </svg>
         </div>
-        <div><div class="type">Catalog</div><h2><a class="stretch" href="/music_catalog/" style="text-decoration:none">Mahesh's Music Archive</a></h2></div>
+        <div><div class="type">Catalog</div><h2><a class="stretch" href="/music_catalog/" style="text-decoration:none">Mahesh's Music Catalog</a></h2></div>
       </div>
-      <p class="summary">My collection of Hindustani classical recordings, mostly classic HMV/Saregama albums kept as lossless FLAC, with the story behind each one.</p>
+      <p class="summary">Hindustani, Carnatic and Fusion recordings. Each one is either In Archive (kept as lossless FLAC, mostly classic HMV/Saregama albums) or streaming only.</p>
       <ul class="points">
-        <li>Search and filter by raga, artist, gharana, instrument, form and time of day</li>
-        <li>Liner notes, track-by-track raga details and a Spotify link for every album and track</li>
-        <li>Also shows albums I don't have yet, and curated streaming lists like 50 raga-based film songs</li>
+        <li>Spotify and YouTube Music links for every track, and YouTube videos for film songs</li>
+        <li>Notes on each raga: thaat, time of day, aroha/avaroha, vadi/samvadi, pakad and mood</li>
+        <li>Search and filter by raga, artist, gharana, instrument and time of day; liner notes, and soon my own impressions</li>
       </ul>
       <div class="stats" id="archStats" aria-live="polite"></div>
-      <div class="sub"><a href="/music_catalog/streaming.html">Streaming lists</a><a href="/music_catalog/#view=tracks">Browse all tracks</a></div>
+      <div class="sub"><a href="/music_catalog/#status=In+Archive">In Archive</a><a href="/music_catalog/#view=tracks">Browse all tracks</a></div>
       <div class="go"><span class="cta">Open the archive →</span><span class="url">electronut.in/music_catalog</span></div>
     </article>
   </div>
@@ -162,12 +162,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
       if (c === '"') inStr = true; else if (c === "{") depth++; else if (c === "}" && --depth === 0) break;
     }
     const data = JSON.parse(html.slice(i, j + 1));
-    const own = data.albums.filter(a => a.owned !== false);
-    const tracks = own.reduce((n, a) => n + a.tracks.length, 0);
-    const ragas = new Set(own.flatMap(a => a.tracks.map(t => t.ragaBase)).filter(Boolean)).size;
-    const wish = data.albums.filter(a => a.owned === false && a.spotifyKind !== "playlist").length;
-    const lists = data.albums.filter(a => a.spotifyKind === "playlist").length;
-    const bits = [`${own.length} albums`, `${tracks} tracks`, `${ragas} ragas`, wish && `${wish} on the wishlist`, lists && `${lists} streaming list${lists > 1 ? "s" : ""}`];
+    const own = data.albums.filter(a => a.owned !== false), stream = data.albums.filter(a => a.owned === false);
+    const n = list => list.reduce((k, a) => k + a.tracks.length, 0);
+    const ragas = new Set(data.albums.flatMap(a => a.tracks.map(t => t.ragaBase)).filter(Boolean)).size;
+    const bits = [`${own.length} albums In Archive`, `${n(own) + n(stream)} tracks`, `${stream.length} albums streaming only`, `${ragas} ragas`];
     document.getElementById("archStats").innerHTML = bits.filter(Boolean).map(b => `<span class="stat">${b}</span>`).join("");
   } catch {}
 })();
